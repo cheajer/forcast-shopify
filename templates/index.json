@@ -15,7 +15,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<h1>The Elements <br/>of Style</h1>",
+            "text": "<h1>AW26 Has Landed | Head Over Hills</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -60,7 +60,7 @@
         "section_width": "page-width",
         "section_height": "full-screen",
         "section_height_custom": 50,
-        "color_scheme": "scheme-6",
+        "color_scheme": "scheme-1",
         "toggle_overlay": true,
         "overlay_color": "#00000099",
         "overlay_style": "gradient",
@@ -251,7 +251,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>New this season</h3>",
+                "text": "<h3>Shop by Category</h3>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "center",
@@ -536,7 +536,7 @@
         "text_69C6UJ": {
           "type": "text",
           "settings": {
-            "text": "<h2>Premium materials and<br/>hand-selected finishing touches</h2>",
+            "text": "<h2>Quality fabrics, trans-seasonal collections, free shipping over $200</h2>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -606,9 +606,9 @@
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "medium",
         "section_height_custom": 60,
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "toggle_overlay": true,
         "overlay_color": "#00000075",
         "overlay_style": "gradient",

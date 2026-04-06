@@ -79,9 +79,33 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "header_announcement": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_1": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Free shipping on orders over $200"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_1"
+      ],
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-4",
+        "divider_width": 0,
+        "padding_block_start": 15,
+        "padding_block_end": 15
+      }
     }
   },
   "order": [
+    "header_announcement",
     "header_section"
   ]
 }
