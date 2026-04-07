@@ -27,10 +27,25 @@
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-schemes' -%}
+    <style>
+      :root {
+        --font-body--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --font-subheading--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --font-heading--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --font-accent--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --font-body--weight: 400;
+        --font-subheading--weight: 500;
+        --font-heading--weight: 300;
+        --font-accent--weight: 400;
+      }
+    </style>
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
