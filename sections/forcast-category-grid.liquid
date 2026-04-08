@@ -1,0 +1,145 @@
+<!--
+  Section: Forcast Category Grid
+  Description: 2x2 grid of category images with overlay buttons
+-->
+
+{%- liquid
+  assign blocks = section.blocks
+  assign block_count = blocks.size
+-%}
+
+<style>
+  .forcast-category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 40px 0;
+  }
+  .forcast-category-item {
+    position: relative;
+    overflow: hidden;
+  }
+  .forcast-category-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .forcast-category-item:hover img {
+    transform: scale(1.05);
+  }
+  .forcast-category-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+  }
+  .forcast-category-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 1px solid #000;
+    transition: all 0.3s ease;
+  }
+  .forcast-category-btn:hover {
+    background: #000;
+    color: #fff;
+  }
+  @media (max-width: 768px) {
+    .forcast-category-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="forcast-category-grid">
+  {%- for block in blocks -%}
+    {%- liquid
+      assign image = block.settings.image
+      assign mobile_image = block.settings.mobile_image | default: image
+      assign title = block.settings.title
+      assign link = block.settings.link
+    -%}
+    <div class="forcast-category-item" {{ block.shopify_attributes }}>
+      <a href="{{ link }}">
+        <picture>
+          <source media="(max-width: 768px)" srcset="{{ mobile_image | asset_url }}">
+          <img src="{{ image | asset_url }}" alt="{{ title | escape }}" loading="lazy">
+        </picture>
+        {%- if title != blank -%}
+          <div class="forcast-category-overlay">
+            <a href="{{ link }}" class="forcast-category-btn">{{ title }}</a>
+          </div>
+        {%- endif -%}
+      </a>
+    </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Forcast Category Grid",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 4,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop Image",
+          "info": "Recommended size: 480x720"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image (optional)",
+          "info": "Recommended size: 480x720"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forcast Category Grid",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        },
+        {
+          "type": "category"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

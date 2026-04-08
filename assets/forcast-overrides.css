@@ -1,0 +1,41 @@
+
+/* Forcast theme overrides */
+:root {
+  --font-body--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-subheading--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-heading--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-accent--family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Override font weights */
+:root {
+  --font-body--weight: 400;
+  --font-subheading--weight: 500;
+  --font-heading--weight: 300;
+  --font-accent--weight: 400;
+}
+
+/* Adjust heading letter-spacing */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.5px;
+}
+
+/* Forcast uses 8px baseline grid, ensure spacing aligns */
+body {
+  line-height: 1.5;
+}
+
+/* Sale badge red */
+.badge--sale {
+  background-color: #DB1818 !important;
+  color: #FFFFFF !important;
+}
+
+/* Optional: adjust button borders to match Forcast */
+.button--primary {
+  border-radius: 0;
+}
+
+.button--secondary {
+  border-radius: 0;
+}

@@ -1,0 +1,134 @@
+<!--
+  Section: Forcast Hero
+  Description: Full-width hero banner with overlay button
+-->
+
+{%- liquid
+  assign desktop_image = section.settings.desktop_image
+  assign mobile_image = section.settings.mobile_image | default: desktop_image
+  assign button_text = section.settings.button_text
+  assign button_link = section.settings.button_link
+  assign overlay_title = section.settings.overlay_title
+  
+  if desktop_image != blank
+    assign desktop_image_url = desktop_image | img_url: '1920x'
+  else
+    assign desktop_image_url = 'forcast-homepage/images/BLOCK_03_100.jpg' | asset_url
+  endif
+  
+  if mobile_image != blank
+    assign mobile_image_url = mobile_image | img_url: '768x'
+  else
+    assign mobile_image_url = 'forcast-homepage/images/BLOCK_03_100.jpg' | asset_url
+  endif
+-%}
+
+<style>
+  .forcast-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .forcast-hero__image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .forcast-hero__overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+  .forcast-hero__overlay-title {
+    color: #000;
+    font-size: 4.8vw;
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .forcast-hero__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    border: 1px solid #000;
+    transition: all 0.3s ease;
+  }
+  .forcast-hero__btn:hover {
+    background: #000;
+    color: #fff;
+  }
+  @media (max-width: 768px) {
+    .forcast-hero__overlay-title {
+      font-size: 8vw;
+    }
+  }
+</style>
+
+<div class="forcast-hero">
+  <picture>
+    <source media="(max-width: 768px)" srcset="{{ mobile_image_url }}">
+    <img class="forcast-hero__image" src="{{ desktop_image_url }}" alt="{{ overlay_title | escape }}" loading="lazy">
+  </picture>
+  {%- if overlay_title != blank or button_text != blank -%}
+    <div class="forcast-hero__overlay">
+      {%- if overlay_title != blank -%}
+        <h2 class="forcast-hero__overlay-title">{{ overlay_title }}</h2>
+      {%- endif -%}
+      {%- if button_text != blank -%}
+        <a href="{{ button_link }}" class="forcast-hero__btn">{{ button_text }}</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Forcast Hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop Image",
+      "info": "Recommended size: 1920x938"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image (optional)",
+      "info": "Recommended size: 768x938"
+    },
+    {
+      "type": "text",
+      "id": "overlay_title",
+      "label": "Overlay Title",
+      "default": "FOUNDATIONAL SILHOUETTES FOR THE VERSATILE WARDROBE"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "SHOP NEW IN"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forcast Hero",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
