@@ -11,8 +11,6 @@
     "forcast_hero_1": {
       "type": "forcast-hero",
       "settings": {
-        "desktop_image": null,
-        "mobile_image": null,
         "overlay_title": "FOUNDATIONAL SILHOUETTES FOR THE VERSATILE WARDROBE",
         "button_text": "SHOP NEW IN",
         "button_link": "shopify://collections/new-in"
@@ -32,8 +30,6 @@
         "category_1": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP SALE DRESSES",
             "link": "shopify://collections/sale-dresses"
           }
@@ -41,8 +37,6 @@
         "category_2": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP SALE TOPS",
             "link": "shopify://collections/sale-tops"
           }
@@ -50,8 +44,6 @@
         "category_3": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP SALE KNITWEAR",
             "link": "shopify://collections/sale-knitwear"
           }
@@ -59,8 +51,6 @@
         "category_4": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP SALE PANTS",
             "link": "shopify://collections/sale-pants"
           }
@@ -79,8 +69,6 @@
         "category_1": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP DRESSES",
             "link": "shopify://collections/women-dresses"
           }
@@ -88,8 +76,6 @@
         "category_2": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP TOPS",
             "link": "shopify://collections/women-tops"
           }
@@ -97,8 +83,6 @@
         "category_3": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP CO-ORD SETS",
             "link": "shopify://collections/matching-sets"
           }
@@ -106,8 +90,6 @@
         "category_4": {
           "type": "category",
           "settings": {
-            "image": null,
-            "mobile_image": null,
             "title": "SHOP KNITWEAR",
             "link": "shopify://collections/women-knitwear"
           }
