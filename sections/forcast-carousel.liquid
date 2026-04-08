@@ -1,0 +1,180 @@
+<!--
+  Section: Forcast Carousel
+  Description: Toggle between New Arrivals and Best Sellers carousels
+-->
+
+{%- liquid
+  assign new_arrivals_collection = section.settings.new_arrivals_collection
+  assign best_sellers_collection = section.settings.best_sellers_collection
+  assign max_products = section.settings.max_products | default: 8
+  assign new_arrivals_products = collections[new_arrivals_collection].products | default: nil
+  assign best_sellers_products = collections[best_sellers_collection].products | default: nil
+-%}
+
+<style>
+  .forcast-carousel-section {
+    padding: 40px 0;
+  }
+  .forcast-carousel-selector {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .forcast-carousel-selector a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+  }
+  .forcast-carousel-selector a.active {
+    border-bottom-color: #000;
+    font-weight: bold;
+  }
+  .forcast-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  .forcast-carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+  }
+  .forcast-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .forcast-carousel-item {
+    flex: 0 0 calc(25% - 20px);
+    min-width: 250px;
+    text-align: center;
+  }
+  .forcast-carousel-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .forcast-carousel-item a {
+    text-decoration: none;
+    color: inherit;
+  }
+  .forcast-carousel-item-title {
+    margin-top: 10px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .forcast-carousel.hidden {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .forcast-carousel-item {
+      flex: 0 0 calc(50% - 20px);
+    }
+  }
+</style>
+
+<div class="forcast-carousel-section">
+  <div class="forcast-carousel-selector">
+    <a id="new-in-btn" class="active" data-target="new-in-carousel">NEW ARRIVALS</a> |
+    <a id="best-sellers-btn" data-target="best-sellers-carousel">BEST SELLERS</a>
+  </div>
+  <div class="forcast-carousel-wrapper">
+    {%- if new_arrivals_products -%}
+      <div id="new-in-carousel" class="forcast-carousel">
+        {%- for product in new_arrivals_products limit: max_products -%}
+          <div class="forcast-carousel-item">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title | escape }}" loading="lazy">
+              <div class="forcast-carousel-item-title">{{ product.title }}</div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if best_sellers_products -%}
+      <div id="best-sellers-carousel" class="forcast-carousel hidden">
+        {%- for product in best_sellers_products limit: max_products -%}
+          <div class="forcast-carousel-item">
+            <a href="{{ product.url }}">
+              <img src="{{ product.featured_image | img_url: '500x' }}" alt="{{ product.title | escape }}" loading="lazy">
+              <div class="forcast-carousel-item-title">{{ product.title }}</div>
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const newInBtn = document.getElementById('new-in-btn');
+    const bestSellersBtn = document.getElementById('best-sellers-btn');
+    const newInCarousel = document.getElementById('new-in-carousel');
+    const bestSellersCarousel = document.getElementById('best-sellers-carousel');
+    
+    if (!newInBtn || !bestSellersBtn) return;
+    
+    function switchCarousel(target) {
+      if (target === 'new-in-carousel') {
+        newInCarousel.classList.remove('hidden');
+        bestSellersCarousel.classList.add('hidden');
+        newInBtn.classList.add('active');
+        bestSellersBtn.classList.remove('active');
+      } else {
+        newInCarousel.classList.add('hidden');
+        bestSellersCarousel.classList.remove('hidden');
+        newInBtn.classList.remove('active');
+        bestSellersBtn.classList.add('active');
+      }
+    }
+    
+    newInBtn.addEventListener('click', function() {
+      switchCarousel('new-in-carousel');
+    });
+    bestSellersBtn.addEventListener('click', function() {
+      switchCarousel('best-sellers-carousel');
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Forcast Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "new_arrivals_collection",
+      "label": "New Arrivals Collection"
+    },
+    {
+      "type": "collection",
+      "id": "best_sellers_collection",
+      "label": "Best Sellers Collection"
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "label": "Max products per carousel",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Forcast Carousel",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
