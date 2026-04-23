@@ -1,0 +1,156 @@
+{{ 'forcast-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="forcast-homepage forcast-editorial page-width color-{{ section.settings.color_scheme }}">
+  <div class="forcast-editorial__feature">
+    <div class="forcast-editorial__copy">
+      {% if section.settings.kicker != blank %}
+        <p class="forcast-section-heading__eyebrow">{{ section.settings.kicker }}</p>
+      {% endif %}
+      <h2 class="forcast-section-heading__title">{{ section.settings.feature_heading }}</h2>
+      <div class="forcast-editorial__richtext rte">{{ section.settings.feature_copy }}</div>
+      {% if section.settings.feature_link_label != blank %}
+        <a class="forcast-button forcast-button--link" href="{{ section.settings.feature_link }}">{{ section.settings.feature_link_label }}</a>
+      {% endif %}
+    </div>
+    <div class="forcast-editorial__image">
+      <img src="{{ section.settings.feature_image_url | escape }}" alt="{{ section.settings.feature_image_alt | escape }}" loading="lazy">
+    </div>
+  </div>
+
+  <div class="forcast-seo-copy">
+    <div class="forcast-seo-copy__column rte">{{ section.settings.column_one }}</div>
+    <div class="forcast-seo-copy__column rte">{{ section.settings.column_two }}</div>
+  </div>
+
+  <div class="forcast-faq">
+    <h3>{{ section.settings.faq_heading }}</h3>
+    {% for block in section.blocks %}
+      <details class="forcast-faq__item" {{ block.shopify_attributes }} {% if forloop.first %}open{% endif %}>
+        <summary>{{ block.settings.question }}</summary>
+        <div class="rte">{{ block.settings.answer }}</div>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Homepage editorial SEO",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "The Forcast perspective"
+    },
+    {
+      "type": "text",
+      "id": "feature_heading",
+      "label": "Feature heading",
+      "default": "Build an elegant wardrobe filled with quality women’s clothes"
+    },
+    {
+      "type": "richtext",
+      "id": "feature_copy",
+      "label": "Feature copy",
+      "default": "<p>Welcome to Forcast, discover women’s clothes with contemporary designs that are chic, stylish, easy to pair, and destined to elevate your everyday wardrobe. Whether you are shopping for workwear, casual ensembles or a polished silhouette for an after-hours occasion, this refreshed homepage keeps the same premium mood while remaining an original Shopify implementation.</p><p>Blending refined tailoring, feminine details and versatile outfitting ideas, the section mirrors the long-form editorial rhythm of the reference site without copying its proprietary layout code.</p>"
+    },
+    {
+      "type": "url",
+      "id": "feature_link",
+      "label": "Feature link"
+    },
+    {
+      "type": "text",
+      "id": "feature_link_label",
+      "label": "Feature link label",
+      "default": "Shop all clothing"
+    },
+    {
+      "type": "text",
+      "id": "feature_image_url",
+      "label": "Feature image URL",
+      "default": "https://cdn.forcast.com.au/media/wysiwyg/BLOCK_03_104.jpg"
+    },
+    {
+      "type": "text",
+      "id": "feature_image_alt",
+      "label": "Feature image alt text",
+      "default": "Editorial Forcast campaign image"
+    },
+    {
+      "type": "richtext",
+      "id": "column_one",
+      "label": "Column one",
+      "default": "<h3>Forcast, the best quality online clothing store for women</h3><p>Every fashion-forward wardrobe benefits from foundation pieces that feel polished and easy to style. Use this area to speak about essentials, tops, blouses, tailoring and occasion dresses in a tone that suits your brand voice.</p><p>The two-column layout intentionally echoes the structure of the reference homepage, creating a premium reading experience with spacious typography and restrained line lengths.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "column_two",
+      "label": "Column two",
+      "default": "<h3>Designed for workdays, weekends and events</h3><p>From versatile pants and jackets for office dressing to elegant dresses for weddings and celebrations, this section supports long-form SEO copy while still feeling editorial and fashion-led.</p><p>It also creates room for brand positioning, shipping promises, ethical sourcing notes and local design credentials, closely matching the content density of the inspiration site.</p>"
+    },
+    {
+      "type": "text",
+      "id": "faq_heading",
+      "label": "FAQ heading",
+      "default": "FAQs"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Is Forcast an Australian brand?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes. Use this answer area for locally written FAQ content, store information and supporting brand details.</p>"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Homepage editorial SEO",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "What kind of women’s clothes are in fashion?",
+            "answer": "<p>Well-tailored, high-quality staples remain timeless. Pair trend-aware pieces with refined basics for an effortless wardrobe.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Is Forcast an Australian brand?",
+            "answer": "<p>Yes. The brand is Australian-owned and the collections are designed in Sydney.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Where can shoppers explore the full collection?",
+            "answer": "<p>Use this space to direct visitors to your online catalogue, store locator or styling services.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
