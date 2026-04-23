@@ -1,0 +1,469 @@
+{% liquid
+  assign search_style = 'none'
+  if section.settings.show_search
+    assign search_style = 'modal'
+  endif
+%}
+
+<header class="forcast-header color-{{ section.settings.color_scheme_top }}">
+  <div class="forcast-header__bar page-width-normal">
+    <div class="forcast-header__mobile-toggle">
+      <button type="button" class="forcast-header__icon-button" data-forcast-mobile-toggle aria-expanded="false" aria-controls="ForcastMobileMenu">
+        <span class="svg-wrapper">{{ 'icon-menu.svg' | inline_asset_content }}</span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+
+    <a class="forcast-header__logo" href="{{ routes.root_url }}" aria-label="Forcast home">
+      <img src="https://cdn.forcast.com.au/media/logo/stores/1/forcast_logo_black.svg" alt="Forcast" loading="eager" width="170" height="23">
+    </a>
+
+    <nav class="forcast-header__nav" aria-label="Primary">
+      <ul class="forcast-nav list-unstyled" role="list">
+        <li class="forcast-nav__item">
+          <a class="forcast-nav__link" href="/collections/new-in">NEW IN</a>
+          <div class="forcast-nav__panel forcast-nav__panel--simple">
+            <div class="forcast-nav__column">
+              <a href="/collections/new-in">New Clothing</a>
+              <a href="/collections/new-accessories">New Accessories</a>
+              <a href="/collections/back-in-stock">Back In Stock</a>
+              <a href="/collections/best-sellers">Best Sellers</a>
+            </div>
+          </div>
+        </li>
+        <li class="forcast-nav__item forcast-nav__item--wide">
+          <a class="forcast-nav__link" href="/collections/clothing">CLOTHING</a>
+          <div class="forcast-nav__panel">
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">Tops</span>
+              <a href="/collections/t-shirts-tops">T-Shirts &amp; Tops</a>
+              <a href="/collections/long-sleeve-tops">Long Sleeve Tops</a>
+              <a href="/collections/shirts-blouses">Shirts &amp; Blouses</a>
+              <a href="/collections/work-tops">Work Tops</a>
+              <a href="/collections/basic-tops">Basic Tops</a>
+            </div>
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">Dresses</span>
+              <a href="/collections/mini-dresses">Mini Dresses</a>
+              <a href="/collections/midi-dresses">Midi Dresses</a>
+              <a href="/collections/maxi-dresses">Maxi Dresses</a>
+              <a href="/collections/work-dresses">Work Dresses</a>
+              <a href="/collections/day-dresses">Day Dresses</a>
+              <a href="/collections/black-dresses">Black Dresses</a>
+              <a href="/collections/event-dresses">Event Dresses</a>
+            </div>
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">Separates</span>
+              <a href="/collections/pants">Pants</a>
+              <a href="/collections/skirts">Skirts</a>
+              <a href="/collections/jumpsuits">Jumpsuits</a>
+              <a href="/collections/outerwear">Outerwear</a>
+              <a href="/collections/knitwear">Knitwear</a>
+              <a href="/collections/denim">Denim</a>
+            </div>
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">By Edit</span>
+              <a href="/collections/bump-friendly">Bump Friendly Edit</a>
+              <a href="/collections/core-collection">Core Collection</a>
+              <a href="/collections/linen-edit">Linen Edit</a>
+              <a href="/collections/modest-edit">Modest Edit</a>
+              <a href="/collections/petite-edit">Petite Edit</a>
+            </div>
+          </div>
+        </li>
+        <li class="forcast-nav__item">
+          <a class="forcast-nav__link" href="/collections/dresses">DRESSES</a>
+          <div class="forcast-nav__panel forcast-nav__panel--simple">
+            <div class="forcast-nav__column">
+              <a href="/collections/mini-dresses">Mini Dresses</a>
+              <a href="/collections/midi-dresses">Midi Dresses</a>
+              <a href="/collections/maxi-dresses">Maxi Dresses</a>
+              <a href="/collections/work-dresses">Work Dresses</a>
+              <a href="/collections/day-dresses">Day Dresses</a>
+              <a href="/collections/event-dresses">Event Dresses</a>
+              <a href="/collections/black-dresses">Black Dresses</a>
+            </div>
+          </div>
+        </li>
+        <li class="forcast-nav__item">
+          <a class="forcast-nav__link" href="/collections/workwear">WORKWEAR</a>
+          <div class="forcast-nav__panel forcast-nav__panel--simple">
+            <div class="forcast-nav__column">
+              <a href="/collections/suit-sets">Suit Sets</a>
+              <a href="/collections/work-jackets">Work Jackets</a>
+              <a href="/collections/work-tops">Work Tops</a>
+              <a href="/collections/work-skirts">Work Skirts</a>
+              <a href="/collections/work-dresses">Work Dresses</a>
+              <a href="/collections/work-pants">Work Pants</a>
+            </div>
+          </div>
+        </li>
+        <li class="forcast-nav__item">
+          <a class="forcast-nav__link" href="/collections/accessories">ACCESSORIES</a>
+          <div class="forcast-nav__panel forcast-nav__panel--simple">
+            <div class="forcast-nav__column">
+              <a href="/collections/bags">Bags</a>
+              <a href="/collections/belts">Belts</a>
+              <a href="/collections/jewellery">Jewellery</a>
+              <a href="/collections/scarves">Scarves</a>
+              <a href="/collections/shoes">Shoes</a>
+              <a href="/collections/hair-accessories">Hair Accessories</a>
+            </div>
+          </div>
+        </li>
+        <li class="forcast-nav__item">
+          <a class="forcast-nav__link forcast-nav__link--sale" href="/collections/sale">SALE</a>
+          <div class="forcast-nav__panel forcast-nav__panel--simple">
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">Clothing</span>
+              <a href="/collections/sale-knitwear">Knitwear</a>
+              <a href="/collections/sale-tops">Tops</a>
+              <a href="/collections/sale-pants">Pants</a>
+              <a href="/collections/sale-jackets">Jackets &amp; Coats</a>
+              <a href="/collections/sale-dresses">Dresses</a>
+              <a href="/collections/sale-skirts">Skirts</a>
+              <a href="/collections/sale-jumpsuits">Jumpsuits &amp; Playsuits</a>
+            </div>
+            <div class="forcast-nav__column">
+              <span class="forcast-nav__heading">Accessories</span>
+              <a href="/collections/sale-bags">Bags</a>
+              <a href="/collections/sale-jewellery">Jewellery</a>
+              <a href="/collections/sale-belts">Belts</a>
+              <a href="/collections/sale-shoes">Shoes</a>
+              <a href="/collections/sale-hair-accessories">Hair Accessories</a>
+              <a href="/collections/sale-scarves">Scarves</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="forcast-header__actions">
+      <a class="forcast-header__text-link mobile:hidden" href="/pages/store-locator">STORES</a>
+      <a class="forcast-header__text-link mobile:hidden" href="/pages/wishlist">WISHLIST</a>
+      {% render 'search', style: search_style, display_style: 'text' %}
+      {% render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: 'text', section: section %}
+    </div>
+  </div>
+
+  <div id="ForcastMobileMenu" class="forcast-mobile-menu" hidden>
+    <div class="forcast-mobile-menu__inner page-width-normal">
+      <div class="forcast-mobile-menu__utility-links">
+        <a href="/pages/store-locator">Stores</a>
+        <a href="/pages/wishlist">Wishlist</a>
+      </div>
+      <details>
+        <summary>NEW IN</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/new-in">New Clothing</a>
+          <a href="/collections/new-accessories">New Accessories</a>
+          <a href="/collections/back-in-stock">Back In Stock</a>
+          <a href="/collections/best-sellers">Best Sellers</a>
+        </div>
+      </details>
+      <details>
+        <summary>CLOTHING</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/t-shirts-tops">T-Shirts &amp; Tops</a>
+          <a href="/collections/shirts-blouses">Shirts &amp; Blouses</a>
+          <a href="/collections/dresses">Dresses</a>
+          <a href="/collections/pants">Pants</a>
+          <a href="/collections/skirts">Skirts</a>
+          <a href="/collections/outerwear">Outerwear</a>
+          <a href="/collections/knitwear">Knitwear</a>
+          <a href="/collections/jumpsuits">Jumpsuits</a>
+        </div>
+      </details>
+      <details>
+        <summary>DRESSES</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/mini-dresses">Mini Dresses</a>
+          <a href="/collections/midi-dresses">Midi Dresses</a>
+          <a href="/collections/maxi-dresses">Maxi Dresses</a>
+          <a href="/collections/work-dresses">Work Dresses</a>
+          <a href="/collections/day-dresses">Day Dresses</a>
+          <a href="/collections/event-dresses">Event Dresses</a>
+        </div>
+      </details>
+      <details>
+        <summary>WORKWEAR</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/suit-sets">Suit Sets</a>
+          <a href="/collections/work-jackets">Work Jackets</a>
+          <a href="/collections/work-tops">Work Tops</a>
+          <a href="/collections/work-skirts">Work Skirts</a>
+          <a href="/collections/work-dresses">Work Dresses</a>
+          <a href="/collections/work-pants">Work Pants</a>
+        </div>
+      </details>
+      <details>
+        <summary>ACCESSORIES</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/bags">Bags</a>
+          <a href="/collections/belts">Belts</a>
+          <a href="/collections/jewellery">Jewellery</a>
+          <a href="/collections/scarves">Scarves</a>
+          <a href="/collections/shoes">Shoes</a>
+        </div>
+      </details>
+      <details>
+        <summary>SALE</summary>
+        <div class="forcast-mobile-menu__submenu">
+          <a href="/collections/sale-tops">Sale Tops</a>
+          <a href="/collections/sale-pants">Sale Pants</a>
+          <a href="/collections/sale-dresses">Sale Dresses</a>
+          <a href="/collections/sale-skirts">Sale Skirts</a>
+          <a href="/collections/sale-bags">Sale Bags</a>
+          <a href="/collections/sale-jewellery">Sale Jewellery</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  (() => {
+    const root = document.currentScript.closest('.shopify-section') || document;
+    const toggle = root.querySelector('[data-forcast-mobile-toggle]');
+    const panel = root.querySelector('#ForcastMobileMenu');
+    if (!toggle || !panel) return;
+    toggle.addEventListener('click', () => {
+      const isOpen = !panel.hasAttribute('hidden');
+      panel.toggleAttribute('hidden', isOpen);
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .forcast-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--layer-sticky);
+    background: rgb(var(--color-background-rgb));
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+  }
+
+  .forcast-header__bar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
+    min-height: 78px;
+  }
+
+  .forcast-header__logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .forcast-header__logo img {
+    display: block;
+    width: 170px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .forcast-header__nav {
+    justify-self: start;
+  }
+
+  .forcast-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  .forcast-nav__item {
+    position: relative;
+    padding: 1.8rem 0;
+  }
+
+  .forcast-nav__link,
+  .forcast-header__text-link,
+  .forcast-mobile-menu summary,
+  .forcast-mobile-menu a {
+    text-decoration: none;
+    color: rgb(var(--color-foreground-rgb));
+    font-size: 1.2rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .forcast-nav__link--sale {
+    color: #9a2f44;
+  }
+
+  .forcast-header__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.4rem;
+  }
+
+  .forcast-header__actions .search-action,
+  .forcast-header__actions header-actions {
+    margin: 0;
+  }
+
+  .forcast-header__actions .header-actions--text {
+    gap: 1.4rem;
+  }
+
+  .forcast-nav__panel {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(16rem, 1fr));
+    gap: 2.4rem;
+    min-width: 68rem;
+    padding: 2.4rem 2.8rem;
+    background: #fff;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+    box-shadow: 0 18px 36px rgb(0 0 0 / 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  }
+
+  .forcast-nav__panel--simple {
+    grid-template-columns: minmax(18rem, 1fr);
+    min-width: 24rem;
+  }
+
+  .forcast-nav__item--wide .forcast-nav__panel {
+    min-width: 82rem;
+  }
+
+  .forcast-nav__item:hover .forcast-nav__panel,
+  .forcast-nav__item:focus-within .forcast-nav__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .forcast-nav__column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .forcast-nav__heading {
+    font-size: 1.15rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .forcast-nav__column a {
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    font-size: 1.4rem;
+    line-height: 1.45;
+  }
+
+  .forcast-header__mobile-toggle,
+  .forcast-mobile-menu {
+    display: none;
+  }
+
+  .forcast-header__icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+  }
+
+  .forcast-mobile-menu {
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+    background: #fff;
+  }
+
+  .forcast-mobile-menu__inner {
+    padding-top: 1.2rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .forcast-mobile-menu__utility-links,
+  .forcast-mobile-menu__submenu {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forcast-mobile-menu__utility-links {
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .forcast-mobile-menu details {
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+    padding: 1.2rem 0;
+  }
+
+  .forcast-mobile-menu summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .forcast-mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .forcast-mobile-menu__submenu {
+    gap: 0.9rem;
+    padding: 1rem 0 0.4rem 0;
+  }
+
+  .forcast-mobile-menu__submenu a,
+  .forcast-mobile-menu__utility-links a {
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+  }
+
+  @media screen and (max-width: 1199px) {
+    .forcast-header__bar {
+      grid-template-columns: 1fr auto auto;
+      gap: 1rem;
+      min-height: 64px;
+    }
+
+    .forcast-header__mobile-toggle,
+    .forcast-mobile-menu {
+      display: block;
+    }
+
+    .forcast-header__nav,
+    .forcast-header__actions .forcast-header__text-link,
+    .forcast-header__actions .header-actions--text .account-button__text,
+    .forcast-header__actions .header-actions--text .header-actions__cart-icon > span:first-child,
+    .forcast-header__actions .search-action--text > button > span:first-child {
+      display: none;
+    }
+
+    .forcast-header__actions {
+      gap: 0.2rem;
+    }
+
+    .forcast-header__logo {
+      justify-self: center;
+    }
+
+    .forcast-header__logo img {
+      width: 140px;
+    }
+  }
+{% endstylesheet %}
