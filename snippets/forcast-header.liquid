@@ -5,7 +5,7 @@
   endif
 %}
 
-<header class="forcast-header color-{{ section.settings.color_scheme_top }}">
+<header class="forcast-header color-{{ section.settings.color_scheme_top }}" data-forcast-header>
   <div class="forcast-header__bar page-width-normal">
     <div class="forcast-header__mobile-toggle">
       <button type="button" class="forcast-header__icon-button" data-forcast-mobile-toggle aria-expanded="false" aria-controls="ForcastMobileMenu">
@@ -224,14 +224,27 @@
 <script>
   (() => {
     const root = document.currentScript.closest('.shopify-section') || document;
+    const header = root.querySelector('[data-forcast-header]');
     const toggle = root.querySelector('[data-forcast-mobile-toggle]');
     const panel = root.querySelector('#ForcastMobileMenu');
-    if (!toggle || !panel) return;
-    toggle.addEventListener('click', () => {
-      const isOpen = !panel.hasAttribute('hidden');
-      panel.toggleAttribute('hidden', isOpen);
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-    });
+
+    const syncHeaderState = () => {
+      if (!header) return;
+      const panelOpen = panel && !panel.hasAttribute('hidden');
+      header.classList.toggle('is-solid', window.scrollY <= 4 || panelOpen);
+    };
+
+    if (toggle && panel) {
+      toggle.addEventListener('click', () => {
+        const isOpen = !panel.hasAttribute('hidden');
+        panel.toggleAttribute('hidden', isOpen);
+        toggle.setAttribute('aria-expanded', String(!isOpen));
+        syncHeaderState();
+      });
+    }
+
+    syncHeaderState();
+    window.addEventListener('scroll', syncHeaderState, { passive: true });
   })();
 </script>
 
@@ -240,8 +253,31 @@
     position: sticky;
     top: 0;
     z-index: var(--layer-sticky);
-    background: rgb(var(--color-background-rgb));
-    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.08);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .forcast-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgb(var(--color-background-rgb) / 0);
+    transition: background-color 180ms ease, opacity 180ms ease;
+    z-index: -1;
+  }
+
+  .forcast-header.is-solid::before,
+  .forcast-header:hover::before,
+  .forcast-header:focus-within::before {
+    background: rgb(var(--color-background-rgb) / 0.96);
+  }
+
+  .forcast-header.is-solid,
+  .forcast-header:hover,
+  .forcast-header:focus-within {
+    border-bottom-color: rgb(var(--color-foreground-rgb) / 0.08);
+    box-shadow: 0 1px 0 rgb(var(--color-foreground-rgb) / 0.04);
   }
 
   .forcast-header__bar {
