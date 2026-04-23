@@ -1,0 +1,207 @@
+{{ 'forcast-homepage.css' | asset_url | stylesheet_tag }}
+
+<section class="forcast-homepage forcast-hero color-{{ section.settings.color_scheme }}">
+  <div class="forcast-hero__media">
+    <picture>
+      <source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image_url | escape }}">
+      <img
+        src="{{ section.settings.desktop_image_url | escape }}"
+        alt="{{ section.settings.hero_alt | escape }}"
+        loading="eager"
+        fetchpriority="high"
+      >
+    </picture>
+    <div class="forcast-hero__overlay"></div>
+  </div>
+
+  <div class="forcast-hero__content page-width">
+    {% if section.settings.eyebrow != blank %}
+      <p class="forcast-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    {% if section.settings.heading != blank %}
+      <h1 class="forcast-hero__heading">{{ section.settings.heading }}</h1>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <div class="forcast-hero__subheading rte">{{ section.settings.subheading }}</div>
+    {% endif %}
+
+    <div class="forcast-hero__actions">
+      {% if section.settings.primary_label != blank %}
+        <a class="forcast-button forcast-button--solid" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+      {% endif %}
+      {% if section.settings.secondary_label != blank %}
+        <a class="forcast-button forcast-button--ghost" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% if section.blocks.size > 0 %}
+  <section class="forcast-homepage forcast-category-band page-width color-{{ section.settings.color_scheme }}">
+    <div class="forcast-section-heading">
+      <p class="forcast-section-heading__eyebrow">Wardrobe destinations</p>
+      <h2 class="forcast-section-heading__title">Shop the signature edit</h2>
+    </div>
+    <div class="forcast-category-band__grid">
+      {% for block in section.blocks %}
+        <a class="forcast-category-card" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+          <div class="forcast-category-card__image-wrap">
+            <img src="{{ block.settings.image_url | escape }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+          </div>
+          <div class="forcast-category-card__content">
+            <h3>{{ block.settings.title }}</h3>
+            {% if block.settings.copy != blank %}
+              <p>{{ block.settings.copy }}</p>
+            {% endif %}
+            <span>Shop now</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Homepage hero refresh",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New season arrivals"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Women’s fashion clothing and accessories store"
+    },
+    {
+      "type": "richtext",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "<p>Modern tailoring, occasion dressing and polished essentials designed in Sydney for workdays, weekends and after-dark events.</p>"
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop new arrivals"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Explore best sellers"
+    },
+    {
+      "type": "text",
+      "id": "desktop_image_url",
+      "label": "Desktop image URL",
+      "default": "https://cdn.forcast.com.au/media/wysiwyg/25_DRESS_DESKTOP.jpg"
+    },
+    {
+      "type": "text",
+      "id": "mobile_image_url",
+      "label": "Mobile image URL",
+      "default": "https://cdn.forcast.com.au/media/wysiwyg/25_DRESS_MOBILE_1.jpg"
+    },
+    {
+      "type": "text",
+      "id": "hero_alt",
+      "label": "Hero image alt text",
+      "default": "Forcast campaign photography"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Occasion Dresses"
+        },
+        {
+          "type": "text",
+          "id": "copy",
+          "label": "Copy",
+          "default": "Refined silhouettes for events, weddings and evenings out."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "image_url",
+          "label": "Image URL",
+          "default": "https://cdn.forcast.com.au/media/wysiwyg/OCCASION_DRESSES_4.jpg"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Homepage hero refresh",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Occasion Dresses",
+            "copy": "Statement dresses for celebrations, events and evenings out.",
+            "image_url": "https://cdn.forcast.com.au/media/wysiwyg/OCCASION_DRESSES_4.jpg"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Day Dresses",
+            "copy": "Easy silhouettes that move from desk to dinner with ease.",
+            "image_url": "https://cdn.forcast.com.au/media/wysiwyg/DAY_DRESSES_8.jpg"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Suit Sets",
+            "copy": "Sharp tailoring and modern coordinates for polished dressing.",
+            "image_url": "https://cdn.forcast.com.au/media/wysiwyg/SUIT_SETS_28.jpg"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Work Tops",
+            "copy": "Soft structure, elevated fabrics and versatile office staples.",
+            "image_url": "https://cdn.forcast.com.au/media/wysiwyg/WORK_TOPS_22.jpg"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
