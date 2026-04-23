@@ -49,16 +49,21 @@
           }
         }
       },
-      "block_order": ["category_1", "category_2", "category_3", "category_4"],
+      "block_order": [
+        "category_1",
+        "category_2",
+        "category_3",
+        "category_4"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
-        "eyebrow": "New season arrivals",
-        "heading": "Women’s fashion clothing and accessories store",
-        "subheading": "<p>Modern tailoring, occasion dressing and polished essentials designed in Sydney for workdays, weekends and after-dark events.</p>",
+        "eyebrow": "",
+        "heading": "",
+        "subheading": "",
         "primary_link": "/collections/all",
-        "primary_label": "Shop new arrivals",
+        "primary_label": "",
         "secondary_link": "/collections/all",
-        "secondary_label": "Explore best sellers",
+        "secondary_label": "",
         "desktop_image_url": "https://cdn.forcast.com.au/media/wysiwyg/25_DRESS_DESKTOP.jpg",
         "mobile_image_url": "https://cdn.forcast.com.au/media/wysiwyg/25_DRESS_MOBILE_1.jpg",
         "hero_alt": "Forcast campaign photography"
@@ -101,7 +106,11 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3"],
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3"
+      ],
       "settings": {
         "color_scheme": "scheme-1",
         "kicker": "The Forcast perspective",
