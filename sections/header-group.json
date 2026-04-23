@@ -11,48 +11,45 @@
   "type": "header",
   "name": "Header",
   "sections": {
-    "header_section": {
-      "type": "header",
+    "header_announcement": {
+      "type": "header-announcements",
       "blocks": {
-        "header-logo": {
-          "type": "_header-logo",
-          "static": true,
+        "announcement_1": {
+          "type": "_announcement",
           "settings": {
-            "hide_logo_on_home_page": false,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "header-menu": {
-          "type": "_header-menu",
-          "static": true,
-          "settings": {
-            "menu": "main-menu",
-            "color_scheme": "",
-            "type_font_primary_size": "var(--font-size--body-sm)",
-            "menu_font_style": "inverse",
-            "type_font_primary_link": "primary",
-            "type_case_primary_link": "uppercase",
-            "menu_style": "featured_products",
-            "featured_products_aspect_ratio": "4 / 5",
-            "featured_collections_aspect_ratio": "16 / 9",
-            "image_border_radius": 0,
-            "navigation_bar": false,
-            "color_scheme_navigation_bar": "",
-            "drawer_accordion": false,
-            "drawer_accordion_expand_first": false,
-            "drawer_dividers": false
+            "text": "Free shipping on orders over $200",
+            "link": "",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none"
           },
           "blocks": {}
         }
       },
+      "block_order": [
+        "announcement_1"
+      ],
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-4",
+        "divider_width": 0,
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
+    },
+    "header_section": {
+      "type": "header",
+      "custom_css": [
+        ".forcast-header__logo {padding-left: 15px;}"
+      ],
       "settings": {
         "logo_position": "center",
         "menu_position": "left",
         "menu_row": "top",
+        "customer_account_menu": "customer-account-main-menu",
         "show_search": true,
         "search_position": "right",
         "search_row": "top",
@@ -69,6 +66,10 @@
         "divider_width": 0,
         "divider_size": "page-width",
         "border_width": 0,
+        "actions_display_style": "icon",
+        "actions_font_size": "0.875rem",
+        "actions_font": "body",
+        "actions_text_case": "none",
         "color_scheme_top": "scheme-2",
         "color_scheme_bottom": "",
         "color_scheme_transparent": "scheme-6",
@@ -78,29 +79,6 @@
         "product_color_scheme": "default",
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
-      }
-    },
-    "header_announcement": {
-      "type": "header-announcements",
-      "blocks": {
-        "announcement_1": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Free shipping on orders over $200"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "announcement_1"
-      ],
-      "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-4",
-        "divider_width": 0,
-        "padding_block_start": 15,
-        "padding_block_end": 15
       }
     }
   },
